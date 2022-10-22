@@ -2,7 +2,6 @@
 set -x
 
 WORKDIR=`pwd`
-REPODIR=<path/to/this/repo>
 
 PATTERN='[-a-zA-Z0-9_]*='
 if [ $# -lt "0" ] ; then
@@ -28,7 +27,7 @@ fi
 
 #conda install -c conda-forge llvm-openmp
 
-home=${REPODIR}/closed/Intel/code/bert-99/pytorch-cpu
+home=$code/closed/Intel/code/bert-99/pytorch-cpu
 
 # use gcc-9 compile clang-15
 # install clang-15
@@ -92,4 +91,4 @@ popd
 pip install boto3 tokenization
 
 #convert dataset and model
-bash convert.sh
+# bash convert.sh

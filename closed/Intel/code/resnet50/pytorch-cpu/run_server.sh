@@ -29,10 +29,6 @@ if [ -z "${RN50_FULL}" ]; then
     exit 1
 fi
 
-CONDA_ENV_NAME=rn50-mlperf
-source ~/anaconda3/etc/profile.d/conda.sh
-conda activate ${CONDA_ENV_NAME}
-
 export MALLOC_CONF="oversize_threshold:1,background_thread:true,metadata_thp:auto,dirty_decay_ms:9000000000,muzzy_decay_ms:9000000000"
 
 export LD_PRELOAD=${CONDA_PREFIX}/lib/libjemalloc.so
@@ -52,7 +48,7 @@ if [ -e "mlperf_log_summary.txt" ]; then
     rm mlperf_log_summary.txt
 fi
 
-numactl -C 0-55,56-111 -m 0,1 ${APP} --scenario Server  \
+numactl -C 0-23,48-71 -m 0 ${APP} --scenario Server  \
 	--mode Performance  \
 	--mlperf_conf ${CUR_DIR}/src/mlperf.conf \
 	--user_conf ${CUR_DIR}/src/user.conf \
@@ -61,10 +57,10 @@ numactl -C 0-55,56-111 -m 0,1 ${APP} --scenario Server  \
     --rn50-part3 ${RN50_END} \
     --rn50-full-model ${RN50_FULL} \
 	--data_path ${DATA_DIR} \
-	--num_instance 28 \
+	--num_instance 24 \
 	--warmup_iters 50 \
-	--cpus_per_instance 4 \
-	--total_sample_count 50000 \
+	--cpus_per_instance 2 \
+	--total_sample_count 1024 \
     --batch_size 4
 
 if [ -e "mlperf_log_summary.txt" ]; then

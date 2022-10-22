@@ -1,10 +1,5 @@
 #!/bin/bash
 
-CONDA_ENV_NAME=rn50-mlperf
-source ~/anaconda3/etc/profile.d/conda.sh
-conda activate ${CONDA_ENV_NAME}
-
-
 if [ -z "${CHECKPOINT}" ]; then
     echo "Path to trained checkpoint not set. Please set it:"
     echo "export CHECKPOINT="

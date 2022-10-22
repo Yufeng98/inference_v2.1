@@ -1,0 +1,4 @@
+build/
+*.JPEG
+models/
+__pycache__/
