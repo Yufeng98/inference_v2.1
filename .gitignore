@@ -2,3 +2,7 @@ build/
 *.JPEG
 models/
 __pycache__/
+*log*
+ILSVRC2012_img_val/
+resnet50-fp32-model.pth
+resnet50-int8-scales.json
